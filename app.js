@@ -34,7 +34,7 @@ function getCharacterArray() {
 
 
 
-$('button').click(function generatePassword() {
+$('#password-btn').click(function generatePassword() {
 
   $password = ''
 
