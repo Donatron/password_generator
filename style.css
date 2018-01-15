@@ -5,3 +5,9 @@
   background-size: cover;
   border-radius: 0;
 }
+
+footer {
+  width: 100%;
+  background-color: lightgrey;
+  padding: 20px 0;
+}
