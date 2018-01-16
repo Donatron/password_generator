@@ -1,3 +1,31 @@
+/*********************************
+BASE STYLES
+*********************************/
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*********************************
+NAVIGATION
+*********************************/
+
+.navbar-brand {
+  font-family: 'Righteous', cursive;
+}
+
+.fa-lock {
+  font-size: 1.25rem;
+  margin: 0 20px;
+}
+
+/*********************************
+JUMBOTRON
+*********************************/
+
 .jumbotron {
   height: 600px;
   color: white;
@@ -5,6 +33,10 @@
   background-size: cover;
   border-radius: 0;
 }
+
+/*********************************
+FOOTER
+*********************************/
 
 footer {
   width: 100%;
