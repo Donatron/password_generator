@@ -1,7 +1,7 @@
 {
   "name": "password_generator",
   "version": "1.0.0",
-  "description": "A Web app to generate and store secure passwords",
+  "description": "A simple Web app for creating and storing secure passwords",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
