@@ -30,8 +30,6 @@ function getCharacterArray() {
 
 };
 
-
-
 $('#password-btn').click(function generatePassword() {
 
   $password = ''

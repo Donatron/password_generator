@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+  // Jumbotron
+  div.jumbotron.text-center
+    h1.display-4 Random Password Generator
+    p.lead Easily create and store secure passwords.
+    br
+    p.lead Click below to create account and begin, or create a password below and save to your favourite passport
+    p.lead
+      a.btn.btn-primary.btn-lg(href="#", role="button") Create Account
+
+  // Password Generator
+  div.container
+    div.text-center
+      button.btn.btn-primary.my-4#password-btn Click to generate password
+      h5 Your password is:
+      p#password
+      button.btn.btn-secondary.my-4 Copy Password
