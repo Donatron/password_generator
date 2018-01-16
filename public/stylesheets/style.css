@@ -29,7 +29,7 @@ JUMBOTRON
 .jumbotron {
   height: 600px;
   color: white;
-  background: url('img/hero-image.jpg');
+  background: url('../images/hero-image.jpg');
   -moz-background-size: cover;
        background-size: cover;
   -moz-border-radius: 0;

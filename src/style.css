@@ -29,11 +29,9 @@ JUMBOTRON
 .jumbotron {
   height: 600px;
   color: white;
-  background: url('img/hero-image.jpg');
-  -moz-background-size: cover;
-       background-size: cover;
-  -moz-border-radius: 0;
-       border-radius: 0;
+  background: url('../images/hero-image.jpg');
+  background-size: cover;
+  border-radius: 0;
 }
 
 /*********************************

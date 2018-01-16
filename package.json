@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/Donatron/password_generator#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.1",
+    "postcss-cssnext": "^3.0.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
   }
 }
