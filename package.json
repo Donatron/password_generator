@@ -1,0 +1,22 @@
+{
+  "name": "password_generator",
+  "version": "1.0.0",
+  "description": "A Web app to generate and store secure passwords",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Donatron/password_generator.git"
+  },
+  "author": "Don Macarthur",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Donatron/password_generator/issues"
+  },
+  "homepage": "https://github.com/Donatron/password_generator#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
