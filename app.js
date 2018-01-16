@@ -24,9 +24,19 @@ app.get('/about', function(req, res, next) {
   res.render('about');
 });
 
+// GET sign up page
+app.get('/signup', function(req, res, next) {
+  res.render('signup');
+});
+
 // GET passwords page
 app.get('/passwords', function(req, res, next) {
   res.render('passwords');
+});
+
+// GET login page
+app.get('/login', function(req, res, next) {
+  res.render('login');
 });
 
 // catch 404 and forward to error handler
