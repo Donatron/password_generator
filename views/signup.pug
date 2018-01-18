@@ -2,4 +2,21 @@ extends layout
 
 block content
 
-  h1 This is the signup form
+  div.container.text-center
+    div.row.col-md-6.offset-3.mt-5
+      h1 Create Account
+    div.row.col-md-6.offset-3.mt-3.text-left.signup-form
+      form(method="post" action='/signup')
+        div.form-group
+          label(for="name") Name:
+          input#name.form-control(type='text', placeholder='full name' name='name')
+        div.form-group
+          label(for="email") Email:
+          input#email.form-control(type='text', placeholder='email' name='email')
+        div.form-group
+          label(for="password") Password:
+          input#password.form-control(type='password', placeholder='password' name='password')
+        div.form-group
+          label(for="passwordConfirm") Confirm Password:
+          input#passwordConfirm.form-control(type='password', placeholder='password' name='passwordConfirm')
+        button.btn.btn-primary Submit
