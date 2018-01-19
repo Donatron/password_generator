@@ -11,6 +11,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.btn {
+  -moz-border-radius: 0;
+       border-radius: 0;
+}
+
 .btn-primary {
   background-color: #32d268;
   border: none;

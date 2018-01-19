@@ -85,7 +85,21 @@ app.get('/login', function(req, res, next) {
 
 // POST log in page
 app.post('/login', function(req, res, next) {
-  return res.render('passwords');
+  if(req.body.email && req.body.password) {
+    User.authenticate(req.body.email, req.body.password, function(error, user) {
+      if (error || !user) {
+        var err = new Error('Wrong email or password');
+        err.status = 401;
+        return next(err);
+      } else {
+        return res.redirect('/passwords');
+      }
+    });
+  } else {
+    var err = new Error('Please input both email and password to sign in');
+    err.status = 400;
+    return next(err);
+  }
 });
 
 // catch 404 and forward to error handler
