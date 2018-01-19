@@ -1,4 +1,16 @@
 extends layout
 
 block content
-  h1 This is the login form
+
+  div.container.text-center
+    div.row.col-md-6.offset-3.mt-5
+      h1 Log In
+    div.row.col-md-6.offset-3.mt-3.text-left
+      form(method="post" action='/login')
+        div.form-group
+          label(for="email") Email:
+          input#email.form-control(type='text', placeholder='email' name='email')
+        div.form-group
+          label(for="password") Password:
+          input#password.form-control(type='password', placeholder='password' name='password')
+        button.btn.btn-primary(type='submit') Submit

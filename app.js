@@ -25,17 +25,17 @@ app.use(express.static(__dirname + '/public'));
 
 // GET index page
 app.get('/', function (req, res, next) {
-  return res.render('index');
+  return res.render('index', { title: 'Home' });
 });
 
 // GET about page
 app.get('/about', function(req, res, next) {
-  res.render('about');
+  res.render('about', { title: 'About' });
 });
 
 // GET sign up page
 app.get('/signup', function(req, res, next) {
-  res.render('signup');
+  res.render('signup', { title: 'Sign Up'});
 });
 
 // POST sign up page
@@ -75,12 +75,17 @@ app.post('/signup', function(req, res, next) {
 
 // GET passwords page
 app.get('/passwords', function(req, res, next) {
-  res.render('passwords');
+  res.render('passwords', { title: 'My Passwords'});
 });
 
 // GET login page
 app.get('/login', function(req, res, next) {
-  res.render('login');
+  res.render('login', { title: 'Log In' });
+});
+
+// POST log in page
+app.post('/login', function(req, res, next) {
+  return res.render('passwords');
 });
 
 // catch 404 and forward to error handler

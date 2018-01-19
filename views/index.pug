@@ -9,12 +9,13 @@ block content
     br
     p.lead Click below to create account and begin, or create a password below and save to your favourite passport
     p.lead
-      a.btn.btn-primary.btn-lg(href="#", role="button") Create Account
+      a.btn.btn-primary.btn-lg(href="/signup", role="button") Create Account
 
   // Password Generator
   div.container
     div.text-center
       button.btn.btn-primary.my-4#password-btn Click to generate password
-      h5 Your password is:
-      p#password
+      div.row.col-md-6.offset-md-3.text-center
+        h5.col-6 Your password is:
+        p.col-6#password
       button.btn.btn-secondary.my-4 Copy Password
