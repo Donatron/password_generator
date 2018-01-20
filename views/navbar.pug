@@ -5,11 +5,16 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
     span.navbar-toggler-icon
   div.collapse.navbar-collapse#navbarNav
     ul.navbar-nav
-      li.nav-item.active
-        a.nav-link(href="/signup") Sign Up
+      if !currentUser
+        li.nav-item.active
+          a.nav-link(href="/signup") Sign Up
       li.nav-item
         a.nav-link(href="/about") About
       li.nav-item
         a.nav-link(href="/passwords") My Passwords
-    a(href="/login")
-      button.btn.btn-primary Log In
+      if currentUser
+        a(href="/logout")
+          button.btn.btn-primary.pull-md-right Log Out
+      else
+        a(href="/login")
+          button.btn.btn-primary.pull-md-right Log In

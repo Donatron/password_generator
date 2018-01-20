@@ -2,6 +2,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var app = express();
 var User = require('./models/user');
 
@@ -11,6 +13,22 @@ var db = mongoose.connection;
 
 // Handle database connection errors
 db.on('error', console.error.bind(console, 'Connection error:'));
+
+// use sessions for tracking logins
+app.use(session({
+  secret: 'I love to code',
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: db
+  })
+}));
+
+// make user ID available in templates
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.session.userId;
+  next();
+});
 
 // parse incoming requests
 app.use(bodyParser.json());
@@ -62,6 +80,7 @@ app.post('/signup', function(req, res, next) {
       if (error) {
         return next(error);
       } else {
+        req.session.userId = user._id;
         return res.redirect('/passwords');
       }
     });
@@ -75,7 +94,22 @@ app.post('/signup', function(req, res, next) {
 
 // GET passwords page
 app.get('/passwords', function(req, res, next) {
-  res.render('passwords', { title: 'My Passwords'});
+  // Check to see if a user is succesfully logged in
+  if (!req.session.userId) {
+    var err = new Error('You must be signed in to view this page!');
+    err.status = 403;
+    return next(err);
+  }
+
+  // Search mongo for user details
+  User.findById(req.session.userId)
+    .exec(function( error, user) {
+      if (error) {
+        return next(error)
+      } else {
+        return res.render('passwords', { title: 'My Passwords', name: user.name});
+      }
+    });
 });
 
 // GET login page
@@ -92,6 +126,7 @@ app.post('/login', function(req, res, next) {
         err.status = 401;
         return next(err);
       } else {
+        req.session.userId = user._id;
         return res.redirect('/passwords');
       }
     });
@@ -99,6 +134,20 @@ app.post('/login', function(req, res, next) {
     var err = new Error('Please input both email and password to sign in');
     err.status = 400;
     return next(err);
+  }
+});
+
+// GET /logout
+app.get('/logout', function(req, res, next) {
+  if (req.session) {
+    //delete the session
+    req.session.destroy(function(err) {
+      if (err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    });
   }
 });
 
