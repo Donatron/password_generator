@@ -6,9 +6,12 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  min-height: 100vh;
   position: relative;
   font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  min-height: 100vh;
 }
 
 .btn {
@@ -51,12 +54,15 @@ NAVIGATION
   margin: 0 20px;
 }
 
+.fa-bars {
+  color: rgb(122, 240, 160);
+}
+
 /*********************************
 JUMBOTRON
 *********************************/
 
 .jumbotron {
-  height: 600px;
   color: white;
   background: url('../images/hero-image.jpg');
   -moz-background-size: cover;
@@ -71,6 +77,21 @@ SIGN UP PAGE
 
 .form-control {
   width: 400px;
+}
+
+/*********************************
+ERROR PAGE
+*********************************/
+
+.fa-exclamation {
+  font-size: 5rem;
+  color: white;
+  background-color: rgb(122, 240, 160);
+  height: 100px;
+  width: 100px;
+  -moz-border-radius: 50%;
+       border-radius: 50%;
+  padding-top: .8rem;
 }
 
 /*********************************
