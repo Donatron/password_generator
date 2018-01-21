@@ -71,7 +71,7 @@ JUMBOTRON
 
 .jumbotron {
   color: white;
-  background: url('../images/hero-image.jpg');
+  background: url('../images/hero-image.jpg') fixed center no-repeat;
   background-size: cover;
   border-radius: 0;
 }
