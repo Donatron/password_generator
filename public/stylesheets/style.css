@@ -2,16 +2,21 @@
 BASE STYLES
 *********************************/
 
+html {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   border: 0;
+  min-height: 100%;
   position: relative;
   font-family: 'Roboto', sans-serif;
-}
-
-.container {
-  min-height: 100vh;
+  padding-bottom: 6rem;
 }
 
 .btn {
@@ -20,14 +25,17 @@ body {
 }
 
 .btn-primary {
-  background-color: #32d268;
+  background-color: #008193;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #7af0a0;
-  background-color: rgba(122, 240, 160, 1);
+  background-color: #00c2de;
 
+}
+
+#disclaimer {
+  font-style: italic;
 }
 
 /*********************************
@@ -35,14 +43,14 @@ NAVIGATION
 *********************************/
 
 .navbar {
-  background: -webkit-gradient(linear, left top, right top, from(#7af0a0), to(#000000));
-  background: -moz-linear-gradient(left, #7af0a0 0%, #000000 100%);
-  background: -o-linear-gradient(left, #7af0a0 0%, #000000 100%);
-  background: linear-gradient(to right, #7af0a0 0%, #000000 100%);
-  background: -webkit-gradient(linear, left top, right top, from(rgba(122, 240, 160, 1)), to(rgba(0, 0, 0, 1)));
-  background: -moz-linear-gradient(left, rgba(122, 240, 160, 1) 0%, rgba(0, 0, 0, 1) 100%);
-  background: -o-linear-gradient(left, rgba(122, 240, 160, 1) 0%, rgba(0, 0, 0, 1) 100%);
-  background: linear-gradient(to right, rgba(122, 240, 160, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#4feaff), to(#000000));
+  background: -moz-linear-gradient(left, #4feaff 0%, #000000 100%);
+  background: -o-linear-gradient(left, #4feaff 0%, #000000 100%);
+  background: linear-gradient(to right, #4feaff 0%, #000000 100%);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(79, 234, 255, 1)), to(rgba(0, 0, 0, 1)));
+  background: -moz-linear-gradient(left, rgba(79, 234, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  background: -o-linear-gradient(left, rgba(79, 234, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  background: linear-gradient(to right, rgba(79, 234, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 .navbar-brand {
@@ -55,7 +63,12 @@ NAVIGATION
 }
 
 .fa-bars {
-  color: rgb(122, 240, 160);
+  color: rgb(79, 234, 255);
+}
+
+.navbar .btn {
+  position: absolute;
+  right: 50;
 }
 
 /*********************************
@@ -69,6 +82,24 @@ JUMBOTRON
        background-size: cover;
   -moz-border-radius: 0;
        border-radius: 0;
+}
+
+/*********************************
+ABOUT PAGE
+*********************************/
+
+.benefits li {
+  list-style: none;
+}
+
+.fa-check {
+  color: #008193;
+  font-size: 1rem;
+}
+
+.benefits li p {
+  display: inline-block;
+  padding-left: 10px;
 }
 
 /*********************************
@@ -86,7 +117,7 @@ ERROR PAGE
 .fa-exclamation {
   font-size: 5rem;
   color: white;
-  background-color: rgb(122, 240, 160);
+  background-color: #008193;
   height: 100px;
   width: 100px;
   -moz-border-radius: 50%;
@@ -100,14 +131,14 @@ FOOTER
 
 footer {
   width: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(#7af0a0), to(#000000));
-  background: -moz-linear-gradient(left, #7af0a0 0%, #000000 100%);
-  background: -o-linear-gradient(left, #7af0a0 0%, #000000 100%);
-  background: linear-gradient(to right, #7af0a0 0%, #000000 100%);
-  background: -webkit-gradient(linear, left top, right top, from(rgba(122, 240, 160, 1)), to(rgba(0, 0, 0, 1)));
-  background: -moz-linear-gradient(left, rgba(122, 240, 160, 1) 0%, rgba(0, 0, 0, 1) 100%);
-  background: -o-linear-gradient(left, rgba(122, 240, 160, 1) 0%, rgba(0, 0, 0, 1) 100%);
-  background: linear-gradient(to right, rgba(122, 240, 160, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#4feaff), to(#000000));
+  background: -moz-linear-gradient(left, #4feaff 0%, #000000 100%);
+  background: -o-linear-gradient(left, #4feaff 0%, #000000 100%);
+  background: linear-gradient(to right, #4feaff 0%, #000000 100%);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(79, 234, 255, 1)), to(rgba(0, 0, 0, 1)));
+  background: -moz-linear-gradient(left, rgba(79, 234, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  background: -o-linear-gradient(left, rgba(79, 234, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  background: linear-gradient(to right, rgba(79, 234, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
   padding: 20px 0;
   color: white;
 
