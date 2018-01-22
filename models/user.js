@@ -17,7 +17,8 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  savedPasswords: []
 });
 
 // autheticate user login against database

@@ -30,7 +30,10 @@ function getCharacterArray() {
 
 };
 
-$('#password-btn').click(function generatePassword() {
+// Hide copy password button
+$('.copy-button').hide();
+
+$('.password-btn').click(function generatePassword() {
 
   $password = ''
 
@@ -50,6 +53,7 @@ $('#password-btn').click(function generatePassword() {
 
     }
 
-    $('#password').html($password);
+    $('.password').html($password);
+    $('.copy-button').show();
 
 });
