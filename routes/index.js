@@ -112,5 +112,18 @@ router.get('/logout', function(req, res, next) {
   }
 });
 
+// POST /save
+
+router.post('/save', function(req, res, next) {
+  if(req.body.description === "" || req.body.url === "") {
+    var err = new Error('Please enter a site description and the website URL');
+    err.status = 401;
+    return next(err);
+  } else {
+    res.redirect('passwords');
+  }
+
+});
+
 
 module.exports = router;

@@ -33,6 +33,23 @@ function getCharacterArray() {
 // Hide copy password button
 $('.copy-button').hide();
 
+// Function to hide save form
+function hideSaveForm() {
+  $('.save-form').hide();
+}
+
+hideSaveForm();
+
+// Function to show save form
+function showSaveForm() {
+  $('.save-form').show();
+}
+
+$('#myPasswordsButton').click(function() {
+  showSaveForm();
+});
+
+// Unhide
 $('.password-btn').click(function generatePassword() {
 
   $password = ''
