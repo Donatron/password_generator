@@ -14,13 +14,14 @@ $characters = [
 
                 [
                   0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-                ],
-
-                [
-                  '!', '@', '#', '$', '%', '^', '&', '*', '~'
                 ]
+
               ];
 
+// Declare Special Characters array
+$specialCharacters = [
+                      '!', '@', '#', '$', '%', '^', '&', '*', '~'
+                     ]
 // Create random index number for selecting random array from $characters
 function getCharacterArray() {
 
@@ -29,6 +30,28 @@ function getCharacterArray() {
   return $arrayNumber;
 
 };
+
+// Use random index to iterate over characters array and generate password
+function generatePassword(length) {
+
+  $password = ''
+
+    for (i=0; i<length; i++) {
+      //Determine which character array to use for each password character
+      $array = getCharacterArray();
+
+      // Get number of characters in array
+      $arrayLength = $characters[$array].length - 1;
+
+      // Generate index number for character's position in array
+      $index = Math.floor(Math.random() * $arrayLength);
+
+      // Find character within character array and append to password variable;
+      $character = $characters[$array][$index];
+      $password += $character;
+    }
+      return $password;
+  };
 
 // Hide copy password button
 $('.copy-button').hide();
@@ -49,26 +72,20 @@ $('#myPasswordsButton').click(function() {
   showSaveForm();
 });
 
-// Unhide
-$('.password-btn').click(function generatePassword() {
+// Create password for non-registered users
+$('#guestPassword').click(function() {
 
-  $password = ''
+  $password = generatePassword(6);
 
-    for (i=0; i<8; i++) {
-      //Determine which character array to use for each password character
-      $array = getCharacterArray();
+    $('.password').html($password);
+    $('.copy-button').show();
 
-      // Get number of characters in array
-      $arrayLength = $characters[$array].length - 1;
+});
 
-      // Generate index number for character's position in array
-      $index = Math.floor(Math.random() * $arrayLength);
+// Create password for registered and logged in users
+$('#myPasswordsButton').click(function() {
 
-      // Find character within character array and append to password variable;
-      $character = $characters[$array][$index];
-      $password += $character;
-
-    }
+  $password = generatePassword(6);
 
     $('.password').html($password);
     $('.copy-button').show();
