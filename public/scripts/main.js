@@ -85,9 +85,18 @@ $('#guestPassword').click(function() {
 // Create password for registered and logged in users
 $('#myPasswordsButton').click(function() {
 
-  $password = generatePassword(6);
+  // Find length of password to be generated
+  $passwordLength = $('#passwordLength option:selected').text();
 
-    $('.password').html($password);
-    $('.copy-button').show();
+  // Check to see if user wants special characters included
+  if($(':checked').length !== 0) {
+    $characters.push($specialCharacters);
+  }
+
+  // Generate password
+  $password = generatePassword($passwordLength);
+
+  $('.password').html($password);
+  $('.copy-button').show();
 
 });
