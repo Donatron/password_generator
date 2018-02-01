@@ -108,6 +108,9 @@ $('#guestPassword').click(function() {
 
 });
 
+// Copy guest user password
+new Clipboard('.copy-button');
+
 // Create password for registered and logged in users
 $('#myPasswordsButton').click(function() {
 

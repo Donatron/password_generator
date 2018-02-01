@@ -21,5 +21,5 @@ block content
       button.btn.btn-primary.my-4.password-btn#guestPassword Click to generate password
       div.row.col-md-6.offset-md-3.text-center.password-generator
         h5.col-6.text-right#password-title Your password is:
-        p.col-6.text-left.password
-      button.btn.btn-outline-primary.my-4.copy-button Copy Password
+        p.col-6.text-left.password#guestPasswordText
+      button.btn.btn-outline-primary.my-4.copy-button(data-clipboard-target="#guestPasswordText") Copy Password
