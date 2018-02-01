@@ -99,6 +99,8 @@ $('#myPasswordsButton').click(function() {
 // Create password for non-registered users
 $('#guestPassword').click(function() {
 
+  $characters = createBaseArray();
+
   $password = generatePassword(6, $characters);
 
     $('.password').html($password);
