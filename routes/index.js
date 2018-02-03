@@ -68,7 +68,7 @@ router.get('/passwords', function(req, res, next) {
       if (error) {
         return next(error)
       } else {
-        return res.render('passwords', { title: 'My Passwords', name: user.name});
+        return res.render('passwords', { title: 'My Passwords', name: user.name, savedPasswords: user.savedPasswords});
       }
     });
 });
@@ -113,13 +113,30 @@ router.get('/logout', function(req, res, next) {
 });
 
 // POST /save
-
 router.post('/save', function(req, res, next) {
   if(req.body.description === "" || req.body.url === "") {
     var err = new Error('Please enter a site description and the website URL');
     err.status = 401;
     return next(err);
   } else {
+
+    // Create object with form data
+    var passwordData = {
+      siteName: req.body.description,
+      siteURL: req.body.url,
+      sitePassword: req.body.generatedPassword
+    };
+
+    User.update(
+      { _id: req.session.userId },
+      { $push:
+        { savedPasswords: {
+          passwordData
+          }
+        }
+      }
+    );
+
     res.redirect('passwords');
   }
 

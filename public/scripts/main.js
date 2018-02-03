@@ -131,6 +131,7 @@ $('#myPasswordsButton').click(function() {
     $password = generatePassword($passwordLength, $passwordCharacters);
   }
 
-  $('.password').html($password);
+  $('#generatedPassword').val($password);
   $('.copy-button').show();
+  console.log($password);
 });
