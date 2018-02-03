@@ -116,6 +116,15 @@ SIGN UP PAGE
 PASSWORDS PAGE
 *********************************/
 
+thead {
+  background-color: var(--colorPrim);
+  color: white;
+}
+
+td {
+  color: var(--colorPrim);
+}
+
 
 /*********************************
 ERROR PAGE

@@ -124,6 +124,15 @@ SIGN UP PAGE
 PASSWORDS PAGE
 *********************************/
 
+thead {
+  background-color: #008193;
+  color: white;
+}
+
+td {
+  color: #008193;
+}
+
 
 /*********************************
 ERROR PAGE

@@ -122,22 +122,24 @@ router.post('/save', function(req, res, next) {
 
     // Create object with form data
     var passwordData = {
-      siteName: req.body.description,
-      siteURL: req.body.url,
-      sitePassword: req.body.generatedPassword
+      "siteName": req.body.description,
+      "siteURL": req.body.url,
+      "sitePassword": req.body.generatedPassword
     };
 
-    User.update(
-      { _id: req.session.userId },
-      { $push:
-        { savedPasswords: {
-          passwordData
-          }
+    var userId = req.session.userId;
+
+    User.findByIdAndUpdate(userId,
+      {$push: {savedPasswords: passwordData}},
+      {safe: true, upsert: true},
+      function(err, doc) {
+        if(err) {
+          res.send(err);
+        } else {
+          res.redirect('passwords');
         }
       }
     );
-
-    res.redirect('passwords');
   }
 
 });
