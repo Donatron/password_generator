@@ -76,7 +76,13 @@ NAVIGATION
   color: rgb(79, 234, 255);
 }
 
-.navbar .btn {
+#profile-button {
+  position: absolute;
+  right: 150;
+}
+
+#log-out-button,
+#log-in-button {
   position: absolute;
   right: 50;
 }
@@ -131,6 +137,10 @@ thead {
 
 td {
   color: #008193;
+}
+
+.password-row {
+  background-color: red;
 }
 
 

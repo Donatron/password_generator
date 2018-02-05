@@ -73,6 +73,25 @@ router.get('/passwords', function(req, res, next) {
     });
 });
 
+// Get profile page
+router.get('/profile', function(req, res, next) {
+  // Find user's information
+  User.findById(req.session.userId)
+    .exec(function(error, user) {
+      if(error) {
+        return next(error);
+      } else {
+        res.render('profile', {name: user.name, email: user.email});
+      }
+    });
+
+});
+
+// POST profile page
+router.post('/profile', function(req, res, next) {
+  res.send('yeah baby');
+});
+
 // GET login page
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Log In' });

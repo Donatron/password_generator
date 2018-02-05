@@ -16,8 +16,12 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
           a.nav-link(href="/passwords") My Passwords
 
         if currentUser
-          a(href="/logout")
-            button.btn.btn-primary.pull-md-right Log Out
+          li.nav-item
+            a(href="/logout")
+              button.btn.btn-outline-primary.m4-0#log-out-button Log Out
+          li.nav-item
+            a(href="/profile")
+              button.btn.btn-primary#profile-button My Profile
         else
           a(href="/login")
-            button.btn.btn-primary.pull-md-right Log In
+            button.btn.btn-primary.mr-0#log-in-button Log In
