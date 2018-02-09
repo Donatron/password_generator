@@ -89,7 +89,17 @@ router.get('/profile', function(req, res, next) {
 
 // POST profile page
 router.post('/profile', function(req, res, next) {
-  res.send('yeah baby');
+  if(req.body.email && req.body.currentPassword) {
+    User.authenticate(req.body.email, req.body.currentPassword, function(error, user) {
+      if (error || !user) {
+        var err = new Error('Please enter your correct email and current password');
+        err.status = 401;
+        return next(err);
+      } else {
+        return res.redirect('/passwords');
+      }
+    });
+  }
 });
 
 // GET login page
