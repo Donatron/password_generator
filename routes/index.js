@@ -96,9 +96,13 @@ router.post('/profile', function(req, res, next) {
         err.status = 401;
         return next(err);
       } else {
-        return res.redirect('/passwords');
+        return res.send('We\'ve got a match!!');
       }
     });
+  } else {
+    var err = new Error('To change your password please enter your correct email address and current password');
+    err.status = 400;
+    return next(err);
   }
 });
 
