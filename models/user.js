@@ -42,6 +42,17 @@ UserSchema.statics.authenticate = function(email, password, callback) {
     });
 }
 
+UserSchema.statics.changePassword = function(email, newPassword, callback) {
+  User.findOne({email: email})
+    .exec(function(error, user) {
+      if (error) {
+        return callback(error);
+      } else {
+        return callback(null, user);
+      }
+    })
+}
+
 // hash password before saving to database
 UserSchema.pre('save', function(next) {
   var user = this;

@@ -90,13 +90,26 @@ router.get('/profile', function(req, res, next) {
 // POST profile page
 router.post('/profile', function(req, res, next) {
   if(req.body.email && req.body.currentPassword) {
+    // Verify user credentials before updating password
     User.authenticate(req.body.email, req.body.currentPassword, function(error, user) {
       if (error || !user) {
         var err = new Error('Please enter your correct email and current password');
         err.status = 401;
         return next(err);
       } else {
-        return res.send('We\'ve got a match!!');
+        // Check to mach sure user has input required fields and that passwords match
+        if (!req.body.newPassword || !req.body.newPasswordConfirm) {
+          var err = new Error('Please enter new password information to change password');
+          err.status = 401;
+          return next(err);
+        } else if (req.body.newPassword !== req.body.newPasswordConfirm) {
+          var err = new Error('New passwords do not match!');
+          err.status = 401;
+          return next(err);
+        }
+        // Change password function goes here
+
+        return res.send('Password successfully changed');
       }
     });
   } else {
