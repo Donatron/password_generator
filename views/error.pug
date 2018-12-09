@@ -3,8 +3,9 @@ extends layout
 block content
   .main.container
     .row.text-center.mt-5
-      .col.p-t-2
+      .col.p-t-2.errors
         i.fa.fa-exclamation.mt-3
         h4.mt-5 Error
         p.lead.m-t-2= message
+        i.fa.fa-chevron-left.mr-3
         a(href="/") Return to Home Page
