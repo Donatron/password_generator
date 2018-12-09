@@ -296,6 +296,10 @@ footer {
 
 footer a {
   color: white;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 footer a:hover {

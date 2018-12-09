@@ -172,10 +172,17 @@ $("#myPasswordsButton").click(function() {
 });
 
 // Fix Hamburger Menu toggling
-
 var hamburgerMenu = document.querySelector(".nav-toggler");
 var navMenu = document.querySelector("#navbarNav");
 
 hamburgerMenu.addEventListener("click", function(e) {
   navMenu.classList.toggle("collapse");
 });
+
+// Insert current date into Copyright notice in footer
+var dateSpan = document.querySelector("footer span");
+var date = new Date().getFullYear();
+
+dateSpan.textContent = "Copyright " + date + " | ";
+
+// dateSpan.innerHTML("Hey dude");
