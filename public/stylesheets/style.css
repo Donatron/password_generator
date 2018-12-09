@@ -32,6 +32,10 @@ button:focus {
 .btn-primary {
   background-color: #008193;
   border: none;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .btn-primary:hover {
@@ -41,6 +45,10 @@ button:focus {
 .btn-outline-primary {
   color: #008193;
   border-color: #008193;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .btn-outline-primary:hover {
@@ -50,6 +58,10 @@ button:focus {
 
 #disclaimer {
   font-style: italic;
+}
+
+.content {
+  margin-top: 90px;
 }
 
 /*********************************
@@ -99,10 +111,26 @@ NAVIGATION
     rgba(79, 234, 255, 1) 0%,
     rgba(0, 0, 0, 1) 100%
   );
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .navbar-brand {
   font-family: "Righteous", cursive;
+}
+
+.navbar-light .navbar-collapse .navbar-nav .nav-item a:hover {
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.nav-item a:hover {
+  opacity: 1;
 }
 
 .fa-lock {
@@ -136,6 +164,8 @@ JUMBOTRON
        background-size: cover;
   -moz-border-radius: 0;
        border-radius: 0;
+  top: 32px;
+  margin-top: 56px;
 }
 
 /*********************************
@@ -272,4 +302,30 @@ footer a:hover {
   color: darkgrey;
   opacity: 0.8;
   text-decoration: none;
+}
+
+/*********************************
+MEDIA QUERIES
+*********************************/
+
+@media screen and (max-width: 991px) {
+  .navbar-nav {
+    height: 100%;
+    width: 100%;
+  }
+
+  #log-in-button {
+    position: relative;
+    margin-left: 47.5;
+    -webkit-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+  }
+
+  #log-in-button:hover {
+    background-color: #fff;
+    color: #008193;
+    opacity: 0.75;
+  }
 }

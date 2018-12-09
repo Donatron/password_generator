@@ -2,23 +2,24 @@ extends layout
 
 block content
 
-  div.col-md-6.mx-auto
-    h1.text-center.my-5 Profile for #{name}
-    form(method="POST" action="/profile")
-      div.form-group
-        label(for="userName") Name:
-        input.form-control(type="text" name="userName" id="userName" value=name)
-      div.form-group
-        label(for="email") Email:
-        input.form-control(type="text" name="email" id="email" value=email)
-      h3.mt-5 Change Password
-      div.form-group
-        label(for="currentPassword") Password:
-        input.form-control(type="password" name="currentPassword" id="currentPassword")
-      div.form-group
-        label(for="newPassword") New Password:
-        input.form-control(type="password" name="newPassword" id="newPassword")
-      div.form-group
-        label(for="newPasswordConfirm") Confirm New Password:
-        input.form-control(type="password" name="newPasswordConfirm" id="newPasswordConfirm")
-      button.btn.btn-outline-primary.update(type='submit') Update Profile
+  div.container.content
+    div.col-md-6.mx-auto
+      h1.text-center.my-5 Profile for #{name}
+      form(method="POST" action="/profile")
+        div.form-group
+          label(for="userName") Name:
+          input.form-control(type="text" name="userName" id="userName" value=name)
+        div.form-group
+          label(for="email") Email:
+          input.form-control(type="text" name="email" id="email" value=email)
+        h3.mt-5 Change Password
+        div.form-group
+          label(for="currentPassword") Password:
+          input.form-control(type="password" name="currentPassword" id="currentPassword")
+        div.form-group
+          label(for="newPassword") New Password:
+          input.form-control(type="password" name="newPassword" id="newPassword")
+        div.form-group
+          label(for="newPasswordConfirm") Confirm New Password:
+          input.form-control(type="password" name="newPasswordConfirm" id="newPasswordConfirm")
+        button.btn.btn-outline-primary.update(type='submit') Update Profile

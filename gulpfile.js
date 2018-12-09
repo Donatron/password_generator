@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var postcss = require("gulp-postcss");
 var cssnext = require("postcss-cssnext");
+var minify = require("gulp-minify");
 
 // Process CSS
 gulp.task("css", function() {
@@ -12,6 +13,15 @@ gulp.task("css", function() {
     .pipe(gulp.dest("./public/stylesheets"));
 });
 
+// Minify JS
+gulp.task("js", function() {
+  gulp
+    .src(["./src/*.js"])
+    .pipe(minify())
+    .pipe(gulp.dest("./public/scripts"));
+});
+
 gulp.task("default", function() {
   gulp.watch("./src/*css", ["css"]);
+  gulp.watch("./src/*.js", ["js"]);
 });
