@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var postcss = require("gulp-postcss");
 var cssnext = require("postcss-cssnext");
-var minify = require("gulp-minify");
+var babel = require("gulp-babel");
 
 // Process CSS
 gulp.task("css", function() {
@@ -15,9 +15,9 @@ gulp.task("css", function() {
 
 // Minify JS
 gulp.task("js", function() {
-  gulp
-    .src(["./src/*.js"])
-    .pipe(minify())
+  return gulp
+    .src("./src/*.js")
+    .pipe(babel())
     .pipe(gulp.dest("./public/scripts"));
 });
 

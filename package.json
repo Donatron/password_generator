@@ -4,7 +4,7 @@
   "description": "A simple Web app for creating and storing secure passwords",
   "main": "app.js",
   "scripts": {
-    "start": "node ./app"
+    "build": "babel presets es2015 src -d public/scripts"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/Donatron/password_generator#readme",
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "gulp": "^3.9.1",
-    "gulp-minify": "^3.1.0",
+    "gulp-babel": "^8.0.0-beta.2",
     "gulp-postcss": "^7.0.1",
     "postcss-cssnext": "^3.1.0"
   },
