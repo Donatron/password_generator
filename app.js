@@ -11,35 +11,16 @@ var logger = require("morgan");
 app.use(logger("dev"));
 
 // db config
-const db = require("./config/kes").mongoUri;
+const db = require("./config/keys").mongoUri;
 
 // Connect Mongo Database
-mongoose.connect(
-  db,
-  { useNewUrlParser: true }
-);
-var db = mongoose.connection;
-
-// Handle database connection errors
-db.on("error", console.error.bind(console, "Connection error:"));
-
-// use sessions for tracking logins
-app.use(
-  session({
-    secret: "I love to code",
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: db
-    })
-  })
-);
-
-// make user ID available in templates
-app.use(function(req, res, next) {
-  res.locals.currentUser = req.session.userId;
-  next();
-});
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("Mongo DB connected"))
+  .catch(err => console.log(err));
 
 // parse incoming requests
 app.use(bodyParser.json());
@@ -73,7 +54,9 @@ app.use(function(err, req, res, next) {
   });
 });
 
+const port = process.env.PORT || 3000;
+
 // listen on port 3000
-app.listen(3000, function() {
-  console.log("Password Generator app listening on port 3000");
+app.listen(port, function() {
+  console.log(`Password Generator listeing on port ${port}`);
 });
