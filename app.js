@@ -10,9 +10,12 @@ var logger = require("morgan");
 
 app.use(logger("dev"));
 
+// db config
+const db = require("./config/kes").mongoUri;
+
 // Connect Mongo Database
 mongoose.connect(
-  "mongodb://localhost:27017/password_generator",
+  db,
   { useNewUrlParser: true }
 );
 var db = mongoose.connection;
