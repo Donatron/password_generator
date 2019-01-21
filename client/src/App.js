@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+
+import Navbar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
+import Footer from "./components/layout/Footer";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>This is the react version of this app;</h1>
-        </header>
+      <div className="App text-center">
+        <Navbar />
+        <Landing />
+        <Footer />
       </div>
     );
   }

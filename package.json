@@ -4,7 +4,12 @@
   "description": "A simple Web app for creating and storing secure passwords",
   "main": "app.js",
   "scripts": {
-    "build": "babel presets es2015 src -d public/scripts"
+    "client-install": "npm install --prefix client",
+    "start": "node app.js",
+    "server": "nodemon server.js",
+    "client": "npm start --preix client",
+    "build": "babel presets es2015 src -d public/scripts",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -28,6 +33,7 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "connect-mongo": "^2.0.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
