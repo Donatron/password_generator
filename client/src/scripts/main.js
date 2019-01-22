@@ -1,3 +1,5 @@
+console.log("We are go for JS");
+
 // Declare password character variable arrays
 $lowerCase = [
   "a",

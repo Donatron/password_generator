@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <div className="nav navbar navbar-expand-lg navbar-light bg-light">
       <i className="fa fa-lock" />
-      <a href="/" className="navbar-brand">
+      <Link to="/" className="navbar-brand">
         Password Generator
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -23,11 +24,31 @@ function Navbar() {
       <div className="collapse navbar-collapse" id="navbarNav">
         <div className="container">
           <ul className="navbar-nav">
-            <li clasName="nav-item">Sign Up</li>
-            <li clasName="nav-item">About</li>
-            <li clasName="nav-item">My Passwords</li>
-            <li clasName="nav-item">Profile</li>
-            <li clasName="nav-item">Login</li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/signup">
+                Sign Up
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">
+                About
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/passwords">
+                My Passwords
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/profile">
+                Profile
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
