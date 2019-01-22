@@ -54,7 +54,7 @@ app.use(function(err, req, res, next) {
 
 const port = process.env.PORT || 8000;
 
-// listen on port 3000
+// listen on port 8000
 app.listen(port, function() {
   console.log(`Password Generator listeing on port ${port}`);
 });

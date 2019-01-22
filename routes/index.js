@@ -9,12 +9,11 @@ router.get("/", function(req, res, next) {
 
 // GET about page
 router.get("/about", function(req, res, next) {
-  res.render("about", { title: "About" });
-});
+  res.json({Success: 'Success'})
 
 // GET sign up page
 router.get("/signup", function(req, res, next) {
-  res.render("signup", { title: "Sign Up" });
+  res.json({ success: "We are go for Signup" });
 });
 
 // POST sign up page
@@ -57,24 +56,26 @@ router.post("/signup", function(req, res, next) {
 // GET passwords page
 router.get("/passwords", function(req, res, next) {
   // Check to see if a user is succesfully logged in
-  if (!req.session.userId) {
-    var err = new Error("You must be signed in to view this page!");
-    err.status = 403;
-    return next(err);
-  }
+  // if (!req.session.userId) {
+  //   var err = new Error("You must be signed in to view this page!");
+  //   err.status = 403;
+  //   return next(err);
+  // }
+
+  res.json({success: "Success"})
 
   // Search mongo for user details
-  User.findById(req.session.userId).exec(function(error, user) {
-    if (error) {
-      return next(error);
-    } else {
-      return res.render("passwords", {
-        title: "My Passwords",
-        name: user.name,
-        savedPasswords: user.savedPasswords
-      });
-    }
-  });
+  // User.findById(req.session.userId).exec(function(error, user) {
+  //   if (error) {
+  //     return next(error);
+  //   } else {
+  //     return res.render("passwords", {
+  //       title: "My Passwords",
+  //       name: user.name,
+  //       savedPasswords: user.savedPasswords
+  //     });
+  //   }
+  // });
 });
 
 // Get profile page
@@ -132,7 +133,7 @@ router.post("/profile", function(req, res, next) {
 
 // GET login page
 router.get("/login", function(req, res, next) {
-  res.render("login", { title: "Log In" });
+  res.json({success: "Success"});
 });
 
 // POST log in page

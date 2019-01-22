@@ -7,7 +7,7 @@
     "client-install": "npm install --prefix client",
     "start": "node app.js",
     "server": "nodemon server.js",
-    "client": "npm start --preix client",
+    "client": "npm start --prefix client",
     "build": "babel presets es2015 src -d public/scripts",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
