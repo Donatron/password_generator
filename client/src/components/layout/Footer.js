@@ -2,8 +2,19 @@ import React from "react";
 
 function Footer() {
   return (
-    <div>
-      <h1>This is the Footer</h1>
+    <div className="footer text-center">
+      <strong>
+        <span>
+          Copyright &copy; {new Date().getFullYear()}
+          <a
+            href="https://donatron.github.io/portfolio"
+            target="_blank"
+            className="ml-3"
+          >
+            Don Macarthur
+          </a>
+        </span>
+      </strong>
     </div>
   );
 }

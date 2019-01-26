@@ -201,10 +201,6 @@ td {
   color: #008193;
 }
 
-.password-row {
-  background-color: red;
-}
-
 /*********************************
 ERROR PAGE
 *********************************/
@@ -233,7 +229,7 @@ ERROR PAGE
 FOOTER
 *********************************/
 
-footer {
+.footer {
   width: 100%;
   background: -webkit-gradient(
     linear,
@@ -274,7 +270,7 @@ footer {
   bottom: 0;
 }
 
-footer a {
+.footer a {
   color: white;
   -webkit-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
@@ -282,7 +278,7 @@ footer a {
   transition: all 0.3s ease-in;
 }
 
-footer a:hover {
+.footer a:hover {
   color: darkgrey;
   opacity: 0.8;
   text-decoration: none;
