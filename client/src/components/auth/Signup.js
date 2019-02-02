@@ -1,64 +1,124 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { signupUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
-function Signup() {
-  return (
-    <div className="content container text-center">
-      <div className="row">
-        <div className="col-md-6 offset-3 mt-5">
-          <h1>Create Account</h1>
+class Signup extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      errors: {}
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      // TODO: push to My Passwords
+      this.props.history.push("/");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errros: nextProps.errors });
+    }
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      passwordConfirm: this.state.passwordConfirm
+    };
+
+    this.props.signupUser(newUser, this.props.history);
+  }
+
+  render() {
+    const { errors } = this.state;
+
+    return (
+      <div className="content container text-center">
+        <div className="row">
+          <div className="col-md-6 offset-3 mt-5">
+            <h1>Create Account</h1>
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-md-6 offset-3 mt-3 text-left signup-form">
-          <form action="/signup" method="post">
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
+        <div className="row">
+          <div className="col-md-6 offset-3 mt-3 text-left signup-form">
+            <form action="/signup" method="post" onSubmit={this.onSubmit}>
+              <TextFieldGroup
+                placeholder="Full Name"
                 name="name"
-                id="name"
-                className="form-control"
-                placeholder="Enter full name"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input
                 type="text"
+                value={this.state.name}
+                onChange={this.onChange}
+                error={errors.name}
+              />
+              <TextFieldGroup
+                placeholder="Email address"
                 name="email"
-                id="email"
-                className="form-control"
-                placeholder="Enter email address"
+                type="text"
+                value={this.state.email}
+                onChange={this.onChange}
+                error={errors.email}
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
+              <TextFieldGroup
+                placeholder="Password"
                 name="password"
-                id="password"
-                className="form-control"
-                placeholder="Enter password"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="passwordConfirm">Confirm Password:</label>
-              <input
                 type="password"
-                name="passwordConfirm"
-                id="passwordConfirm"
-                className="form-control"
-                placeholder="Confirm password"
+                value={this.state.password}
+                onChange={this.onChange}
+                error={errors.password}
               />
-            </div>
-            <button className="btn btn-primary" type="submit">
-              Submit
-            </button>
-          </form>
+              <TextFieldGroup
+                placeholder="Confirm password"
+                name="passwordConfirm"
+                type="password"
+                value={this.state.passwordConfirm}
+                onChange={this.onChange}
+                error={errors.passwordConfirm}
+              />
+              <button className="btn btn-primary" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default Signup;
+Signup.propTypes = {
+  signupUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isrequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { signupUser }
+)(Signup);

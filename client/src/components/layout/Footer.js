@@ -9,6 +9,7 @@ function Footer() {
           <a
             href="https://donatron.github.io/portfolio"
             target="_blank"
+            rel="noopener noreferrer"
             className="ml-3"
           >
             Don Macarthur

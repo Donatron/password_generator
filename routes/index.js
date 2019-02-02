@@ -1,56 +1,62 @@
-var express = require("express");
-var router = express.Router();
-var User = require("../models/user");
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const User = require("../models/user");
+
+// Load input validation
+const validateSignupInput = require("../validation/signup");
+const validateLoginInput = require("../validation/login");
 
 // GET index page
-router.get("/", function(req, res, next) {
-  return res.json({ success: "We are go for front end routing" });
-});
+// router.get("/", function(req, res, next) {
+//   return res.json({ success: "We are go for front end routing" });
+// });
 
 // GET about page
-router.get("/about", function(req, res, next) {
-  res.json({Success: 'Success'})
+// router.get("/about", function(req, res, next) {
+//   res.json({ Success: "Success" });
+// });
 
 // GET sign up page
-router.get("/signup", function(req, res, next) {
-  res.json({ success: "We are go for Signup" });
-});
+// router.get("/signup", function(req, res, next) {
+//   res.json({ success: "We are go for Signup" });
+// });
 
 // POST sign up page
 router.post("/signup", function(req, res, next) {
-  if (
-    req.body.email &&
-    req.body.name &&
-    req.body.password &&
-    req.body.passwordConfirm
-  ) {
-    if (req.body.password !== req.body.passwordConfirm) {
-      var err = new Error("Passwords do not match");
-      err.status = 400;
-      return next(err);
-    }
+  const { errors, isValid } = validateSignupInput(req.body);
 
-    // Create user object from form input
-    var userData = {
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    };
-
-    // add UserData to mongo database
-    User.create(userData, function(error, user) {
-      if (error) {
-        return next(error);
-      } else {
-        req.session.userId = user._id;
-        return res.redirect("/passwords");
-      }
-    });
-  } else {
-    var err = new Error("You must fill in all fields to create an account.");
-    err.status = 400;
-    return next(err);
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
   }
+
+  User.findOne({ email: req.body.email }).then(user => {
+    if (user) {
+      errors.email = "Email already exists";
+      return res.status(400).json(errors);
+    } else {
+      // Create new User object
+
+      const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+      });
+
+      // Generate hashed password
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
+        });
+      });
+    }
+  });
 });
 
 // GET passwords page
@@ -62,7 +68,7 @@ router.get("/passwords", function(req, res, next) {
   //   return next(err);
   // }
 
-  res.json({success: "Success"})
+  res.json({ success: "Success" });
 
   // Search mongo for user details
   // User.findById(req.session.userId).exec(function(error, user) {
@@ -85,7 +91,7 @@ router.get("/profile", function(req, res, next) {
     if (error) {
       return next(error);
     } else {
-      res.render("profile", { name: user.name, email: user.email });
+      res.json("profile", { name: user.name, email: user.email });
     }
   });
 });
@@ -132,28 +138,56 @@ router.post("/profile", function(req, res, next) {
 });
 
 // GET login page
-router.get("/login", function(req, res, next) {
-  res.json({success: "Success"});
-});
+// router.get("/login", function(req, res, next) {
+//   res.json({ success: "Success" });
+// });
 
 // POST log in page
 router.post("/login", function(req, res, next) {
-  if (req.body.email && req.body.password) {
-    User.authenticate(req.body.email, req.body.password, function(error, user) {
-      if (error || !user) {
-        var err = new Error("Wrong email or password");
-        err.status = 401;
-        return next(err);
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.findOne({ email: email }).then(user => {
+    if (!user) {
+      errors.email = "User not found";
+      return res.status(400).json(errors);
+    }
+
+    // Check password
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        // User matched
+        return res.json({ isMatch, success: "User logged in" });
       } else {
-        req.session.userId = user._id;
-        return res.redirect("/passwords");
+        errors.password = "Password incorrect";
+        return res.status(400).json({ errors, password, user: user.password });
       }
     });
-  } else {
-    var err = new Error("Please input both email and password to sign in");
-    err.status = 400;
-    return next(err);
-  }
+  });
+
+  // if (req.body.email && req.body.password) {
+  //   User.authenticate(req.body.email, req.body.password, function(error, user) {
+  //     if (error || !user) {
+  //       var err = new Error("Wrong email or password");
+  //       err.status = 401;
+  //       return next(err);
+  //     } else {
+  //       req.session.userId = user._id;
+  //       return res.redirect("/passwords");
+  //     }
+  //   });
+  // } else {
+  //   var err = new Error("Please input both email and password to sign in");
+  //   err.status = 400;
+  //   return next(err);
+  // }
 });
 
 // GET /logout
